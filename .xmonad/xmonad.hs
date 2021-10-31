@@ -11,7 +11,9 @@ import XMonad
 import Data.Monoid
 import System.Exit
 
+import XMonad.Hooks.SetWMName
 import XMonad.Hooks.ManageDocks
+
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 
@@ -233,7 +235,7 @@ myLayout =
   avoidStruts $ smartBorders myDefaultLayout
   --smartBorders myDefaultLayout
   where
-    myDefaultLayout = full ||| tall
+    myDefaultLayout = tall ||| full
 
 ------------------------------------------------------------------------
 -- Window rules:
@@ -287,6 +289,7 @@ myStartupHook = do
   spawnOnce "~/.fehbg &"
   spawnOnce "picom &"
   spawnOnce "spice-vdagent &"
+  setWMName "LG3D"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
