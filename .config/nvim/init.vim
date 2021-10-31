@@ -1,13 +1,6 @@
-"  ____ _____ 
-" |  _ \_   _|  Derek Taylor (DistroTube)
-" | | | || |    http://www.youtube.com/c/DistroTube
-" | |_| || |    http://www.gitlab.com/dwt1/
-" |____/ |_|
-"        
-" A customized init.vim for neovim (https://neovim.io/)     
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
+let mapleader = "\<Space>"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle For Managing Plugins
@@ -20,13 +13,13 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'                       " Lightline statusbar
     Plug 'suan/vim-instant-markdown', {'rtp': 'after'} " Markdown Preview
     Plug 'frazrepo/vim-rainbow'
+    Plug 'tomasiser/vim-code-dark'
 "{{ File management }}
     Plug 'vifm/vifm.vim'                               " Vifm
     Plug 'scrooloose/nerdtree'                         " Nerdtree
     Plug 'tiagofumo/vim-nerdtree-syntax-highlight'     " Highlighting Nerdtree
     Plug 'ryanoasis/vim-devicons'                      " Icons for Nerdtree
 "{{ Productivity }}
-    Plug 'vimwiki/vimwiki'                             " VimWiki 
     Plug 'jreybert/vimagit'                            " Magit-like plugin for vim
 "{{ Tim Pope Plugins }}
     Plug 'tpope/vim-surround'                          " Change surrounding marks
@@ -37,6 +30,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/goyo.vim'                           " Distraction-free viewing
     Plug 'junegunn/limelight.vim'                      " Hyperfocus on a range
     Plug 'junegunn/vim-emoji'                          " Vim needs emojis!
+"{{ Language support }}
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -79,7 +74,7 @@ let g:rehash256 = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " The lightline.vim theme
 let g:lightline = {
-      \ 'colorscheme': 'darcula',
+      \ 'colorscheme': 'codedark',
       \ }
 
 " Always show statusline
@@ -112,25 +107,26 @@ let g:NERDTreeWinSize=38
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Theming
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#282c34 ctermbg=none  cterm=none
-highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#282c34 ctermbg=none  cterm=none
-highlight CursorLineNr     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
-highlight VertSplit        guifg=#1c1f24 ctermfg=0    guifg=#5b6268 ctermbg=8     cterm=none
-highlight Statement        guifg=#98be65 ctermfg=2    guibg=none    ctermbg=none  cterm=none
-highlight Directory        guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
-highlight StatusLine       guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
-highlight StatusLineNC     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
-highlight NERDTreeClosable guifg=#98be65 ctermfg=2
-highlight NERDTreeOpenable guifg=#5b6268 ctermfg=8
-highlight Comment          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=italic
-highlight Constant         guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
-highlight Special          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
-highlight Identifier       guifg=#5699af ctermfg=6    guibg=none    ctermbg=none  cterm=none
-highlight PreProc          guifg=#c678dd ctermfg=5    guibg=none    ctermbg=none  cterm=none
-highlight String           guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
-highlight Number           guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
-highlight Function         guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
-highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#1c1f24 ctermbg=none  cterm=none
+colorscheme codedark
+"highlight Normal           guifg=#dfdfdf ctermfg=15   guibg=#282c34 ctermbg=none  cterm=none
+"highlight LineNr           guifg=#5b6268 ctermfg=8    guibg=#282c34 ctermbg=none  cterm=none
+"highlight CursorLineNr     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
+"highlight VertSplit        guifg=#1c1f24 ctermfg=0    guifg=#5b6268 ctermbg=8     cterm=none
+"highlight Statement        guifg=#98be65 ctermfg=2    guibg=none    ctermbg=none  cterm=none
+"highlight Directory        guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
+"highlight StatusLine       guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
+"highlight StatusLineNC     guifg=#202328 ctermfg=7    guifg=#5b6268 ctermbg=8     cterm=none
+"highlight NERDTreeClosable guifg=#98be65 ctermfg=2
+"highlight NERDTreeOpenable guifg=#5b6268 ctermfg=8
+"highlight Comment          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=italic
+"highlight Constant         guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
+"highlight Special          guifg=#51afef ctermfg=4    guibg=none    ctermbg=none  cterm=none
+"highlight Identifier       guifg=#5699af ctermfg=6    guibg=none    ctermbg=none  cterm=none
+"highlight PreProc          guifg=#c678dd ctermfg=5    guibg=none    ctermbg=none  cterm=none
+"highlight String           guifg=#3071db ctermfg=12   guibg=none    ctermbg=none  cterm=none
+"highlight Number           guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
+"highlight Function         guifg=#ff6c6b ctermfg=1    guibg=none    ctermbg=none  cterm=none
+"highlight Visual           guifg=#dfdfdf ctermfg=1    guibg=#1c1f24 ctermbg=none  cterm=none
 
 " highlight WildMenu         ctermfg=0       ctermbg=80      cterm=none
 " highlight Folded           ctermfg=103     ctermbg=234     cterm=none
@@ -167,12 +163,6 @@ map <Leader>vs :VsplitVifm<CR>
 map <Leader>sp :SplitVifm<CR>
 map <Leader>dv :DiffVifm<CR>
 map <Leader>tv :TabVifm<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => VimWiki
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-Instant-Markdown
@@ -221,6 +211,9 @@ map <Leader>tk <C-w>t<C-w>K
 
 " Removes pipes | that act as seperators on splits
 set fillchars+=vert:\ 
+
+" COC
+map <Leader>rn <Plug>(coc-rename)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Other Stuff
